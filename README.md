@@ -6,10 +6,10 @@ Plataforma diseñada para monitorear y estimar en tiempo real la contaminación 
 
 Nombre del Equipo: Sukhoi (5)
 
-Martín Campos Arriga
+Lider de equipo: Josue Flores Castillo
 
-Josué Flores Castillo
+lider de tecnologias: Martín Campos Arriga
 
-Santiago González Peréz
+Testing: Santiago González Peréz
 
 correo de contacto: castillojosue935@gmail.com
