@@ -5,6 +5,10 @@ Original file is located at
 """
 # https://openskynetwork.github.io/opensky-api/python.html# para mas info...
 
+
+"""Install directly from GitHub using pip (recommended):
+pip install "git+https://github.com/openskynetwork/opensky-api.git#subdirectory=python"
+"""
 from opensky_api import OpenSkyApi
 from opensky_api import TokenManager
 import requests
