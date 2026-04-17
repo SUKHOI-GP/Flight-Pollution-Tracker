@@ -3,6 +3,7 @@
 Original file is located at
     https://colab.research.google.com/drive/1eJ7it5WB6koDK9ww60lYwf03ibhjrmHy
 """
+# https://openskynetwork.github.io/opensky-api/python.html# para mas info...
 
 from opensky_api import OpenSkyApi
 import datetime
