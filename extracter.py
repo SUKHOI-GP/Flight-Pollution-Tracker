@@ -9,8 +9,13 @@ Original file is located at
 """Install directly from GitHub using pip (recommended):
 pip install "git+https://github.com/openskynetwork/opensky-api.git#subdirectory=python"
 """
-from opensky_api import OpenSkyApi
-from opensky_api import TokenManager
+try:
+    from opensky_api import OpenSkyApi
+    from opensky_api import TokenManager
+except ImportError:
+    print("Warning: opensky_api module not installed. Install with: pip install 'git+https://github.com/openskynetwork/opensky-api.git#subdirectory=python'")
+    OpenSkyApi = None
+    TokenManager = None
 import requests
 from datetime import datetime, timedelta
 
@@ -24,20 +29,25 @@ print(response.json())
 de la aeronave ICAO de 24 bits en formato hexadecimal, así como el inicio y el final del intervalo de tiempo en forma de marcas de tiempo. El intervalo de tiempo debe 
 ser inferior a 30 días. El siguiente ejemplo muestra los pasos a seguir para obtener los vuelos de la aeronave D-AIZZ (3c675a) del 29 de enero de 2018:"""
 
-from opensky_api import OpenSkyApi
-api = OpenSkyApi()
-data = api.get_flights_by_aircraft("3c675a", 1517184000, 1517270400)
-for flight in data:
-    print(flight)
+if OpenSkyApi is not None:
+    api = OpenSkyApi()
+    data = api.get_flights_by_aircraft("3c675a", 1517184000, 1517270400)
+    for flight in data:
+        print(flight)
+else:
+    print("Skipping OpenSkyApi examples because opensky_api is not installed.")
 
 """También es posible obtener vectores de estado para un área determinada. Para ello, es necesario proporcionar un cuadro delimitador, definido por los límites inferior 
 y superior de longitud y latitud. El siguiente ejemplo muestra cómo obtener datos para un cuadro delimitador que abarca Suiza:"""
 
-api = OpenSkyApi()
-# bbox = (min latitude, max latitude, min longitude, max longitude)
-states = api.get_states(bbox=(45.8389, 47.8229, 5.9962, 10.5226))
-for s in states.states:
-    print("(%r, %r, %r, %r)" % (s.longitude, s.latitude, s.baro_altitude, s.velocity))
+if OpenSkyApi is not None:
+    api = OpenSkyApi()
+    # bbox = (min latitude, max latitude, min longitude, max longitude)
+    states = api.get_states(bbox=(45.8389, 47.8229, 5.9962, 10.5226))
+    for s in states.states:
+        print("(%r, %r, %r, %r)" % (s.longitude, s.latitude, s.baro_altitude, s.velocity))
+else:
+    print("Skipping OpenSkyApi examples because opensky_api is not installed.")
 
 """Puedes recuperar datos de vuelo de un intervalo de tiempo específico utilizando el método `get_flights_from_interval`. Para ello, proporciona el inicio y 
 el final del período como marcas de tiempo. Es importante que el intervalo de tiempo proporcionado no sea superior a 2 horas. El siguiente ejemplo muestra cómo recuperar 
