@@ -1,0 +1,14 @@
+*.py text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.md txt eol=lf
+
+*.jpg binary
+*.png binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+.vscode/* text eol=lf
+
+*ipynb text eol=lf
